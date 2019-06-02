@@ -1,45 +1,45 @@
 module.exports = class RelModel {
 
-  constructor () {
+  constructor (length, numDice = 10000000) {
     this.nodes = []
     this.bits = []
     this.dice = []
     this.diceIndex = 0
 
-    this.buildModel = (length) => {
-      for (var i = 0; i < length; i++) {
-        this.nodes[i] = {
-          stability: 0,
-          color: Math.random * 100,
-          targets: Array.from({length}, () => 0),
-          sum: 0
-        }
-      }
-
-      for (var i=0; i < 10000000; i++) {
-        this.dice[i] = Math.random()
+    for (var i = 0; i < length; i++) {
+      this.nodes[i] = {
+        stability: 0,
+        color: Math.random * 100,
+        targets: Array.from({length}, () => 0),
+        sum: 0
       }
     }
 
-    this.step = (i) => {
-      const node = this.nodes[i]
-      const diceRoll = this.dice[this.diceIndex] * node.sum
-      this.diceIndex++
+    for (var i=0; i < numDice; i++) {
+      this.dice[i] = Math.random()
+    }
 
-      let counter = 0
-      var j
-      for (j = 0; j < node.target.length; j++) {
-        counter += node.target[j]
-        if (counter > diceRoll) {
-          break;
+    this.step = () => {
+      for (var i = 0; i < this.nodes.length; i++) {
+        const node = this.nodes[i]
+        const diceRoll = this.dice[this.diceIndex] * node.sum
+        this.diceIndex++
+
+        let counter = 0
+        var j
+        for (j = 0; j < node.targets.length; j++) {
+          counter += node.targets[j]
+          if (counter > diceRoll) {
+            break;
+          }
         }
+        this.bits.push({
+          source: i,
+          target: j,
+          color: node.color,
+          complete: 0
+        })
       }
-      this.bits.push({
-        source: i,
-        target: j,
-        color: node.color,
-        complete: 0
-      })
     }
 
     this.bitStep = () => {
