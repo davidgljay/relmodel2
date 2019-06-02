@@ -1,6 +1,6 @@
-export default class RelModel {
+module.exports = class RelModel {
 
-  constructor {
+  constructor () {
     this.nodes = []
     this.bits = []
     this.dice = []
@@ -8,12 +8,11 @@ export default class RelModel {
 
     this.buildModel = (length) => {
       for (var i = 0; i < length; i++) {
-          this.nodes[j] = {
-            stability: 0,
-            color: Math.random * 100,
-            targets: Array.from({length}, () => 0),
-            sum: 0
-          }
+        this.nodes[i] = {
+          stability: 0,
+          color: Math.random * 100,
+          targets: Array.from({length}, () => 0),
+          sum: 0
         }
       }
 
@@ -31,7 +30,7 @@ export default class RelModel {
       var j
       for (j = 0; j < node.target.length; j++) {
         counter += node.target[j]
-        if counter > diceRoll {
+        if (counter > diceRoll) {
           break;
         }
       }
