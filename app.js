@@ -1,1 +1,0 @@
-const RelModel = require('./relmodel')
