@@ -3,7 +3,7 @@ const Relmodel = require('../relmodel')
 describe('Relmodel', () => {
   let relmodel
   beforeEach(() => {
-    relmodel = new Relmodel(4, 10)
+    relmodel = new Relmodel(4, 1, 10)
   })
 
   it('should build a model', () => {
