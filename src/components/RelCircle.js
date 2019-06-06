@@ -11,6 +11,7 @@ class RelCircle extends Component {
       relModel: new RelModel(props.numNodes),
       relIndex: 0,
       stepTimer: null,
+      bitTimer: null,
       bits: []
     }
 
@@ -38,13 +39,30 @@ class RelCircle extends Component {
       relModel.bitStep()
       this.setState({bits: relModel.bits})
     }
+
+    this.restart = (numNodes) => {
+      const {runStep, runBits} = this
+      clearInterval(this.state.stepTimer)
+      clearInterval(this.state.bitTimer)
+      const stepTimer = setInterval(runStep, 40)
+      const bitTimer = setInterval(runBits, 20)
+      this.setState({
+        relModel: new RelModel(this.props.numNodes),
+        stepTimer,
+        bitTimer,
+        relIndex: 0,
+        bits: []})
+    }
   }
 
   componentDidMount() {
-    const {runStep, runBits} = this
-    const stepTimer = setInterval(runStep, 40)
-    const bitTimer = setInterval(runBits, 20)
-    this.setState({stepTimer, bitTimer})
+    this.restart(this.props.numNodes)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.numNodes !== this.props.numNodes) {
+      this.restart(this.props.numNodes)
+    }
   }
 
   componentWillUnmount() {

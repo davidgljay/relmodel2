@@ -1,6 +1,6 @@
 module.exports = class RelModel {
 
-  constructor (length, colorCoefficient = .1, numDice = 10000000) {
+  constructor (length, colorCoefficient = .1, numDice = 1) {
     this.nodes = []
     this.bits = []
     this.dice = []
@@ -25,7 +25,7 @@ module.exports = class RelModel {
       node.max = 0
       node.entropy = 0
       node.targets.forEach(t => sum += t)
-      for (var i = 0; i < node.targets.length; i++) {
+      for (var i = 0; i < length; i++) {
         node.targets[i] = node.targets[i]/sum
         node.entropy += Math.abs(Math.log1p(node.targets[i]))
         if (node.targets[i] > node.max) {
@@ -36,12 +36,16 @@ module.exports = class RelModel {
 
     this.step = (i) => {
       const node = this.nodes[i]
+      if (!node) {
+        console.error('Node not found');
+        debugger;
+      }
 
-      const diceRoll = this.dice[this.diceIndex]
+      const diceRoll = this.diceIndex >= this.dice.length ? Math.random() : this.dice[this.diceIndex]
       this.diceIndex++
       var j
       var counter = 0
-      for (j = 0; j < node.targets.length - 1; j++) {
+      for (j = 0; j < length - 1; j++) {
         counter += node.targets[j]
         if (counter > diceRoll && i !== j) {
           break;
