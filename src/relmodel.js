@@ -1,6 +1,6 @@
 module.exports = class RelModel {
 
-  constructor (length, colorCoefficient = 1, numDice = 10000000) {
+  constructor (length, colorCoefficient = .1, numDice = 10000000) {
     this.nodes = []
     this.bits = []
     this.dice = []
@@ -9,9 +9,10 @@ module.exports = class RelModel {
     for (var i = 0; i < length; i++) {
       this.nodes[i] = {
         stability: 0,
-        color: Math.random() * 100,
+        color: Math.random() * 360,
         targets: Array.from({length}, () => 0.1),
-        sum: .1 * length
+        sum: .1 * length,
+        max: .1
       }
     }
 
@@ -19,18 +20,35 @@ module.exports = class RelModel {
       this.dice[j] = Math.random()
     }
 
+    this.normalize = (node) => {
+      let sum = 0
+      node.max = 0
+      node.entropy = 0
+      node.targets.forEach(t => sum += t)
+      for (var i = 0; i < node.targets.length; i++) {
+        node.targets[i] = node.targets[i]/sum
+        node.entropy += Math.abs(Math.log1p(node.targets[i]))
+        if (node.targets[i] > node.max) {
+          node.max = node.targets[i]
+        }
+      }
+    }
+
     this.step = (i) => {
       const node = this.nodes[i]
 
-      const diceRoll = this.dice[this.diceIndex] * node.sum
+      const diceRoll = this.dice[this.diceIndex]
       this.diceIndex++
       var j
       var counter = 0
       for (j = 0; j < node.targets.length - 1; j++) {
         counter += node.targets[j]
-        if (counter > diceRoll) {
+        if (counter > diceRoll && i !== j) {
           break;
         }
+      }
+      if (i===j) {
+        j = 0
       }
       this.bits.push({
         source: i,
@@ -46,12 +64,12 @@ module.exports = class RelModel {
         const bit = this.bits[i]
         bit.complete += 1
         if (bit.complete === 100) {
-          const similarity = 100 - Math.abs(bit.color - this.nodes[bit.target].color) * colorCoefficient
-          this.nodes[bit.target].targets[bit.source] += similarity
+          const similarity = 360 - Math.abs(bit.color - this.nodes[bit.target].color) * colorCoefficient
+          this.nodes[bit.target].targets[bit.source] += similarity/500
+          this.normalize(this.nodes[bit.target])
           const colorShift = (bit.color - this.nodes[bit.target].color)/2 *
             Math.abs(bit.color - this.nodes[bit.target].color)/100
-          this.nodes[bit.target].color += colorShift
-          this.nodes[bit.target].sum += similarity
+          this.nodes[bit.target].color = (this.nodes[bit.target].color + colorShift) % 360
         }
       }
     }
