@@ -48,6 +48,7 @@ const styles = {
     textAlign: 'center'
   },
   sliderContainer: {
-    width: 300
+    width: 300,
+    margin: 30
   }
 }

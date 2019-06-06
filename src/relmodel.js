@@ -1,4 +1,4 @@
-module.exports = class RelModel {
+export default class RelModel {
 
   constructor (length, colorCoefficient = .1, numDice = 1) {
     this.nodes = []
