@@ -7,14 +7,15 @@ class RelCircle extends Component {
     super(props);
 
     this.state = {
-      relModel: new RelModel(props.numNodes),
+      relModel: props.relModel ? props.relModel : new RelModel(props.numNodes),
       relIndex: 0,
       stepTimer: null,
       bitTimer: null,
+      restartTimer: null,
       bits: []
     }
 
-    this.getPosition = (n) => {
+    this.getPosition = props.getPosition ? props.getPosition.bind(this) : (n) => {
       const {height, width, radius, numNodes} = this.props
       const center = {
         x: width/2,
@@ -26,20 +27,20 @@ class RelCircle extends Component {
       }
     }
 
-    this.runStep = () => {
+    this.runStep = props.runStep ? props.runStep.bind(this) : () => {
       const {numNodes} = this.props
       const {relModel, relIndex} = this.state
       relModel.step(relIndex)
       this.setState({relIndex: (relIndex + 1) % numNodes})
     }
 
-    this.runBits = () => {
+    this.runBits = props.runBits ? props.runBits.bind(this) : () => {
       const {relModel} = this.state
       relModel.bitStep()
       this.setState({bits: relModel.bits})
     }
 
-    this.restart = (numNodes) => {
+    this.restart = props.restart ? props.restart.bind(this) : (numNodes) => {
       const {runStep, runBits} = this
       clearInterval(this.state.stepTimer)
       clearInterval(this.state.bitTimer)
@@ -55,7 +56,12 @@ class RelCircle extends Component {
   }
 
   componentDidMount() {
+    const {numNodes, restartInterval} = this.props
     this.restart(this.props.numNodes)
+    if (restartInterval) {
+      const restartTimer = setInterval(() => this.restart(numNodes), restartInterval)
+      this.setState({restartTimer})
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -65,14 +71,16 @@ class RelCircle extends Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.stepTimer)
-    clearInterval(this.state.bitTimer)
+    const {stepTimer, bitTimer, restartTimer} = this.state
+    clearInterval(stepTimer)
+    clearInterval(bitTimer)
+    clearInterval(restartTimer)
   }
 
   render () {
-    const {height, width} = this.props
+    const {height, width, render} = this.props
     const {relModel, bits} = this.state
-    return <div>
+    return <div style={styles.container}>
       <svg id="visualization"
         width={width}
         height={height}
@@ -95,6 +103,9 @@ class RelCircle extends Component {
             return <circle key={i} style={{fill:`hsl(${color}, 100%, 50%)`, zIndex: 10}} cx={x} cy={y} r="10"/>
           })
         }
+        {
+          render && render
+        }
 
       </svg>
     </div>
@@ -102,3 +113,9 @@ class RelCircle extends Component {
 }
 
 export default RelCircle;
+
+const styles = {
+  container: {
+    padding: 20
+  }
+}
