@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import RelIntro from './RelIntro'
 import RelDefinition from './RelDefinition'
+import RelTemperature from './RelTemperature'
 
 class App extends Component {
 
@@ -59,6 +60,7 @@ class App extends Component {
           relationality, the negative rate of change of entropy in a system of
           information exchange.
         </div>
+        <RelTemperature height='150' width='350' numNodes={20} temperature={1}/>
       </div>
     </div>
   }
@@ -68,7 +70,7 @@ export default App
 
 const styles = {
   pageContainer: {
-    width: '100%',
+    width: 'calc(100%-40px)',
     padding: 20,
     display: 'flex',
     alignItems: 'center',

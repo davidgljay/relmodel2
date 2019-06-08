@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 import RelCircle from './RelCircle'
-import Slider from '@material-ui/lab/Slider';
+import Slider from '@material-ui/lab/Slider'
 
 class RelIntro extends Component {
 
