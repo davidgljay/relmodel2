@@ -68,11 +68,16 @@ export default class RelModel {
         const bit = this.bits[i]
         bit.complete += 1
         if (bit.complete === 100) {
-          const similarity = 360 - Math.abs(bit.color - this.nodes[bit.target].color) * colorCoefficient
+          const bitColor = bit.color
+          const nodeColor = this.nodes[bit.target].color
+          const similarity = 360 - Math.abs(bitColor - nodeColor) * colorCoefficient
           this.nodes[bit.target].targets[bit.source] += similarity/500
           this.normalize(this.nodes[bit.target])
-          const colorShift = (bit.color - this.nodes[bit.target].color)/2 *
-            Math.abs(bit.color - this.nodes[bit.target].color)/100
+
+          const colorDelta = ((Math.abs(bitColor - nodeColor) + 360) % 360)/2
+          const colorSign = bitColor > nodeColor ? 1 : -1
+
+          const colorShift = colorDelta * colorSign / 30
           this.nodes[bit.target].color = (this.nodes[bit.target].color + colorShift) % 360
         }
       }

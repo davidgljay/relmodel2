@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {blue} from '../styles/colors'
 import RelModel from '../relmodel'
 
 class RelCircle extends Component {
@@ -80,21 +79,20 @@ class RelCircle extends Component {
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink">
         {
-          relModel.nodes.map(({color, max}, i) => {
-            const {x,y} = this.getPosition(i)
-            return <circle key={i} style={{fill:`hsl(${color}, 100%, 50%)`, opacity: max}} cx={x} cy={y} r="10"/>
-          })
-        }
-        {
           bits.map((bit, i) => {
             const source = this.getPosition(bit.source)
             const target = this.getPosition(bit.target)
-            const max = relModel.nodes[bit.source].max
             const bitPlacement = {
               x: source.x + (target.x - source.x) * bit.complete/100,
               y: source.y + (target.y - source.y) * bit.complete/100
             }
-            return <circle key={'bit' + i} style={{fill:`hsl(${bit.color}, 100%, 50%)`, opacity: max}} cx={bitPlacement.x} cy={bitPlacement.y} r="2"/>
+            return <circle key={'bit' + i} style={{fill:`hsl(${bit.color}, 100%, 50%)`}} cx={bitPlacement.x} cy={bitPlacement.y} r="2"/>
+          })
+        }
+        {
+          relModel.nodes.map(({color, max}, i) => {
+            const {x,y} = this.getPosition(i)
+            return <circle key={i} style={{fill:`hsl(${color}, 100%, 50%)`, zIndex: 10}} cx={x} cy={y} r="10"/>
           })
         }
 
