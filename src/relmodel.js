@@ -1,6 +1,6 @@
 export default class RelModel {
 
-  constructor (length, colorCoefficient = .1, numDice = 1) {
+  constructor (length, colorCoefficient = .1, numDice = 1, bitStrength = 1) {
     this.nodes = []
     this.bits = []
     this.dice = []
@@ -71,7 +71,7 @@ export default class RelModel {
           const bitColor = bit.color
           const nodeColor = this.nodes[bit.target].color
           const similarity = 360 - Math.abs(bitColor - nodeColor) * colorCoefficient
-          this.nodes[bit.target].targets[bit.source] += similarity/500
+          this.nodes[bit.target].targets[bit.source] += similarity/700 * bitStrength
           this.normalize(this.nodes[bit.target])
 
           const colorDelta = ((Math.abs(bitColor - nodeColor) + 360) % 360)/2
