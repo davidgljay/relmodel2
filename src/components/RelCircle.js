@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import RelModel from '../relmodel'
+import RelVisualization from './RelVisualization'
 
 class RelCircle extends Component {
 
@@ -78,36 +79,15 @@ class RelCircle extends Component {
   }
 
   render () {
-    const {height, width, render} = this.props
+    const {height, width} = this.props
     const {relModel, bits} = this.state
     return <div style={styles.container}>
-      <svg id="visualization"
+      <RelVisualization
         width={width}
         height={height}
-        xmlns="http://www.w3.org/2000/svg"
-        xmlnsXlink="http://www.w3.org/1999/xlink">
-        {
-          bits.map((bit, i) => {
-            const source = this.getPosition(bit.source)
-            const target = this.getPosition(bit.target)
-            const bitPlacement = {
-              x: source.x + (target.x - source.x) * bit.complete/100,
-              y: source.y + (target.y - source.y) * bit.complete/100
-            }
-            return <circle key={'bit' + i} style={{fill:`hsl(${bit.color}, 100%, 50%)`}} cx={bitPlacement.x} cy={bitPlacement.y} r="2"/>
-          })
-        }
-        {
-          relModel.nodes.map(({color, max}, i) => {
-            const {x,y} = this.getPosition(i)
-            return <circle key={i} style={{fill:`hsl(${color}, 100%, 50%)`, zIndex: 10}} cx={x} cy={y} r="10"/>
-          })
-        }
-        {
-          render && render
-        }
-
-      </svg>
+        relModel={relModel}
+        bits={bits}
+        getPosition={this.getPosition} />
     </div>
   }
 }
