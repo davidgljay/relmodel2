@@ -19,7 +19,7 @@ class RelIntro extends Component {
     const {numNodes} = this.state
 
     return <div>
-        <RelCircle height='350' width='350' numNodes={numNodes} radius={150}/>
+        <RelCircle height={350} width={350} numNodes={numNodes} radius={150}/>
         <div style={styles.sliderContainer}>
           <Slider
             className='slider'

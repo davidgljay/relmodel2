@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import RelIntro from './RelIntro'
 import RelDefinition from './RelDefinition'
 import RelTemperature from './RelTemperature'
+import RelColor from './RelColor'
 
 class App extends Component {
 
@@ -45,12 +46,13 @@ class App extends Component {
           it is possible to map out universal dynamics which all relationships
           share.
         </div>
-        <RelDefinition height='150' width='350' numNodes={20}/>
+        <RelDefinition height={150} width={350} numNodes={20}/>
         <div style={styles.paragraph}>
           Relationships form when information being randomly transmitted across
           a system finds a self-reinforcing feedback loop. These stable flows of
           information go on to reshape the entities sending and receiving them.
         </div>
+        <RelColor height={350} width={350} radius={150}/>
         <div style={styles.paragraph}>
           However most relationships do not happen in a vacuum. New information from
           the surrounding environment constantly disrupts stable relational states.
@@ -60,7 +62,7 @@ class App extends Component {
           relationality, the negative rate of change of entropy in a system of
           information exchange.
         </div>
-        <RelTemperature height='150' width='350' numNodes={20} temperature={1}/>
+        <RelTemperature height={150} width={350} numNodes={20}/>
       </div>
     </div>
   }

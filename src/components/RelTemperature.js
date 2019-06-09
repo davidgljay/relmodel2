@@ -20,6 +20,7 @@ class RelTemperature extends Component {
 
     this.handleSlider = (e, v) => {
       this.setState({temperature: v})
+      console.log(v);
     }
 
     this.getPosition = n => {
@@ -48,8 +49,8 @@ class RelTemperature extends Component {
     }
 
     this.runStep = () => {
-      const {numNodes, temperature} = this.props
-      const {relModel, relIndex} = this.state
+      const {numNodes} = this.props
+      const {relModel, relIndex, temperature} = this.state
       if (Math.random() < temperature || relIndex === numNodes/4 || relIndex === 3 * numNodes/4) {
           relModel.step(relIndex)
           for (var i = 0; i < relModel.nodes.length; i++) {
@@ -89,6 +90,16 @@ class RelTemperature extends Component {
   componentDidMount() {
     const {numNodes} = this.props
     this.restart(numNodes)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const {temperature, stepTimer} = this.state
+    if (prevState.temperature !== temperature) {
+      clearInterval(this.state.stepTimer)
+      const stepTimer = setInterval(this.runStep, 30)
+      this.setState({stepTimer})
+    }
+
   }
 
   componentWillUnmount() {

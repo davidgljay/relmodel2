@@ -3,13 +3,13 @@ import RelModel from '../relmodel'
 import RelVisualization from './RelVisualization'
 import Button from '@material-ui/core/Button'
 
-class RelDefinition extends Component {
+class RelColor extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
-      relModel: new RelModel(props.numNodes),
+      relModel: new RelModel(4, 1),
       relIndex: 0,
       stepTimer: null,
       bitTimer: null,
@@ -18,61 +18,59 @@ class RelDefinition extends Component {
     }
 
     this.getPosition = (n) => {
-        const {height, width, numNodes} = this.props
-        const center = {
-          x: width/2,
-          y: height/2
-        }
-
-        if (n === numNodes/4) {
-          return {
-            x: width/3,
-            y: height/2
-          }
-        } else if (n === 3 * numNodes/4) {
-          return {
-            x: 2 * width/3,
-            y: height/2
-          }
-        }
-
-        return {
-          x: Math.sin( 2 * Math.PI * n/numNodes ) * width + center.x,
-          y: Math.cos( 2 * Math.PI * n/numNodes) * width + center.y
-        }
+      const {height, width, radius} = this.props
+      const center = {
+        x: width/2,
+        y: height/2
+      }
+      return {
+        x: Math.sin( 2 * Math.PI * n/4 ) * radius + center.x,
+        y: Math.cos( 2 * Math.PI * n/4) * radius + center.y
+      }
     }
 
     this.runStep = () => {
-      const {numNodes} = this.props
       const {relModel, relIndex} = this.state
-      relModel.step(numNodes/4)
-      relModel.step(3 * numNodes/4)
+      relModel.step(relIndex)
+      this.setState({relIndex: (relIndex + 1) % 4})
     }
 
-    this.runBits = props.runBits ? props.runBits.bind(this) : () => {
+    this.runBits = () => {
       const {relModel} = this.state
       relModel.bitStep()
       this.setState({bits: relModel.bits})
     }
 
     this.restart = () => {
-        const {runStep, runBits} = this
-        clearInterval(this.state.stepTimer)
-        clearInterval(this.state.bitTimer)
-        const stepTimer = setInterval(runStep, 250)
-        const bitTimer = setInterval(runBits, 20)
-        this.setState({
-          relModel: new RelModel(this.props.numNodes),
+      const {runStep, runBits} = this
+      clearInterval(this.state.stepTimer)
+      clearInterval(this.state.bitTimer)
+      const stepTimer = setInterval(runStep, 100)
+      const bitTimer = setInterval(runBits, 20)
+      this.setState(() => {
+        const relModel = new RelModel(4, .1, 1, 1, .1)
+        relModel.nodes[0].color = 100
+        relModel.nodes[1].color = 100
+        relModel.nodes[2].color = 300
+        relModel.nodes[3].color = 300
+        return {
+          relModel,
           stepTimer,
           bitTimer,
           relIndex: 0,
-          bits: []})
+          bits: []
+        }
+      })
     }
   }
 
   componentDidMount() {
-    const {numNodes} = this.props
-    this.restart(this.props.numNodes)
+    const {restartInterval} = this.props
+    this.restart()
+    if (restartInterval) {
+      const restartTimer = setInterval(() => this.restart(), restartInterval)
+      this.setState({restartTimer})
+    }
   }
 
   componentWillUnmount() {
@@ -82,7 +80,7 @@ class RelDefinition extends Component {
     clearInterval(restartTimer)
   }
 
-  render() {
+  render () {
     const {height, width} = this.props
     const {relModel, bits} = this.state
     return <div style={styles.container}>
@@ -97,10 +95,9 @@ class RelDefinition extends Component {
       </Button>
     </div>
   }
-
 }
 
-export default RelDefinition
+export default RelColor;
 
 const styles = {
   container: {
