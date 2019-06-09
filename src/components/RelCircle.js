@@ -28,20 +28,20 @@ class RelCircle extends Component {
       }
     }
 
-    this.runStep = props.runStep ? props.runStep.bind(this) : () => {
+    this.runStep = () => {
       const {numNodes} = this.props
       const {relModel, relIndex} = this.state
       relModel.step(relIndex)
       this.setState({relIndex: (relIndex + 1) % numNodes})
     }
 
-    this.runBits = props.runBits ? props.runBits.bind(this) : () => {
+    this.runBits = () => {
       const {relModel} = this.state
       relModel.bitStep()
       this.setState({bits: relModel.bits})
     }
 
-    this.restart = props.restart ? props.restart.bind(this) : (numNodes) => {
+    this.restart = (numNodes) => {
       const {runStep, runBits} = this
       clearInterval(this.state.stepTimer)
       clearInterval(this.state.bitTimer)
