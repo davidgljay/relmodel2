@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import RelModel from '../relmodel'
 import RelVisualization from './RelVisualization'
-import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
+import ReplayIcon from '@material-ui/icons/Replay'
 
 class RelColor extends Component {
 
@@ -90,9 +91,9 @@ class RelColor extends Component {
         relModel={relModel}
         bits={bits}
         getPosition={this.getPosition} />
-      <Button onClick={this.restart}>
-        Restart
-      </Button>
+        <IconButton aria-label="Restart" onClick={this.restart}>
+          <ReplayIcon fontSize="medium" />
+        </IconButton>
     </div>
   }
 }
