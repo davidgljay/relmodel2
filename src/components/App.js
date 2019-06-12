@@ -46,15 +46,24 @@ class App extends Component {
           it is possible to map out universal dynamics which all relationships
           share.
         </div>
-        <RelDefinition height={150} width={350} numNodes={20}/>
+        <h4>Relationships Move From Chaos To Stability</h4>
+        <RelDefinition height={150} width={300} numNodes={20}/>
         <div style={styles.paragraph}>
           Relationships form when information being randomly transmitted across
           a system finds a self-reinforcing feedback loop. These stable flows of
           information go on to reshape the entities sending and receiving them.
         </div>
-        <RelColor height={350} width={350} radius={150}/>
+        <h4>Some Relationships Are More Likely To Form Than Others</h4>
+        <RelColor height={200} width={200} radius={70}/>
         <div style={styles.paragraph}>
-          However most relationships do not happen in a vacuum. New information from
+          Different kinds of information will have different impacts on a system. In these
+          visualizations nodes are more likely to create feedback loops with nodes of a
+          similar color. In more complex relational models this must be estimated through other means.
+        </div>
+        <h4>Relationship Often Form In A Noisy Environment</h4>
+        <RelTemperature height={150} width={300} numNodes={20}/>
+        <div style={styles.paragraph}>
+          Most relationships do not happen in a vacuum. New information from
           the surrounding environment constantly disrupts stable relational states.
           To persist, relationships must not only establish a stable flow of information,
           but continuously re-establish that flow in response to external stress.
@@ -62,7 +71,6 @@ class App extends Component {
           relationality, the negative rate of change of entropy in a system of
           information exchange.
         </div>
-        <RelTemperature height={150} width={350} numNodes={20}/>
       </div>
     </div>
   }
