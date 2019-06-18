@@ -1,18 +1,22 @@
 export default class RelModel {
 
-  constructor (length, colorCoefficient = .1, numDice = 1, bitStrength = 1, colorShiftStrength = 1) {
+  constructor (length, colorCoefficient = .1, numDice = 1, bitStrength = 2, colorShiftStrength = 1) {
     this.nodes = []
     this.bits = []
     this.dice = []
     this.diceIndex = 0
+    this.maxEntropy = Math.log1p(1/length) * length ^ 2
+    this.minEntropy = Math.log1p(1) * length
 
     for (var i = 0; i < length; i++) {
       this.nodes[i] = {
         stability: 0,
         color: Math.random() * 360,
-        targets: Array.from({length}, () => 0.1),
+        targets: Array.from({length}, () => 1/length),
         sum: .1 * length,
-        max: .1
+        max: .1,
+        entropy: [],
+        entropyDeltas: []
       }
     }
 
@@ -23,15 +27,21 @@ export default class RelModel {
     this.normalize = (node) => {
       let sum = 0
       node.max = 0
-      node.entropy = 0
+      let entropy = 0
       node.targets.forEach(t => sum += t)
       for (var i = 0; i < length; i++) {
         node.targets[i] = node.targets[i]/sum
-        node.entropy += Math.abs(Math.log1p(node.targets[i]))
+        entropy += Math.abs(Math.log1p(node.targets[i]))
         if (node.targets[i] > node.max) {
           node.max = node.targets[i]
         }
       }
+      node.entropy = node.entropy.concat(entropy).reverse().slice(0,100).reverse()
+      node.entropyDeltas = node.entropy.map(
+        (e, i) => i > 4
+        ? e - node.entropy[i-4]
+        : 0
+      ).slice(4, 100)
     }
 
     this.step = (i) => {
@@ -60,6 +70,8 @@ export default class RelModel {
         color: node.color,
         complete: 0
       })
+
+      this.normalize(this.nodes[i])
     }
 
     this.bitStep = () => {

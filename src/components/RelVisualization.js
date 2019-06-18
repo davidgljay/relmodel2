@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const RelVisualization = ({width, height, bits, relModel, getPosition}) => <svg id="visualization"
+const RelVisualization = ({width, height, bits, relModel, getPosition, entropy = []}) => <svg id="visualization"
   width={width}
   height={height}
   xmlns="http://www.w3.org/2000/svg"
