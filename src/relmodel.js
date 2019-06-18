@@ -36,12 +36,12 @@ export default class RelModel {
           node.max = node.targets[i]
         }
       }
-      node.entropy = node.entropy.concat(entropy).reverse().slice(0,100).reverse()
+      node.entropy = node.entropy.concat(entropy).reverse().slice(0,200).reverse()
       node.entropyDeltas = node.entropy.map(
         (e, i) => i > 4
         ? e - node.entropy[i-4]
         : 0
-      ).slice(4, 100)
+      ).slice(4, 200)
     }
 
     this.step = (i) => {
