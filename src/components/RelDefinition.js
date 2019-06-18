@@ -121,13 +121,19 @@ class RelDefinition extends Component {
             nodes={[relModel.nodes[numNodes/4], relModel.nodes[3 * numNodes/4]]} />
           <div style={styles.text}>
             It can also be helpful to examine how quickly a system forms stable relationships.
-            This "speed to relationship" is what we will call "relationality."
+            This "speed of relationship" is what we will call "relationality."
           </div>
           <RelationalityGraph
             width={width}
             height={50}
             nodes={[relModel.nodes[numNodes/4], relModel.nodes[3 * numNodes/4]]}
             numNodes={relModel.nodes.length} />
+          <div style={styles.text}>
+            Examining the relationality of a system can give insight into how it
+            will behave. Some systems are more relational than others (they have a greater)
+            "speed of relationship". With enough knowledge, one can intervene
+            in systems to make them more or less relational. But there are limits.
+          </div>
         </div>
       }
     </div>
