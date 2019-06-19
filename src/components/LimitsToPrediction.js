@@ -60,7 +60,6 @@ class LimitsToPrediction extends Component {
         relIndex2: (relIndex2 + 1) % numNodes,
         divergence: this.getDivergence()
       })
-      console.log(this.getDivergence());
     }
 
     this.runBits = () => {
@@ -100,6 +99,7 @@ class LimitsToPrediction extends Component {
       const restartTimer = setInterval(() => this.restart(numNodes), restartInterval)
       this.setState({restartTimer})
     }
+    console.log(this.refs);
   }
 
   componentDidUpdate(prevProps, prevState) {
