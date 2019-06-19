@@ -10,7 +10,7 @@ class RelTemperature extends Component {
 
     this.state = {
       temperature: .25,
-      relModel: props.relModel ? props.relModel : new RelModel(props.numNodes),
+      relModel: new RelModel(props.numNodes),
       relIndex: 0,
       stepTimer: null,
       bitTimer: null,
