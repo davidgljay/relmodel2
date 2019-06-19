@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import RelModel from '../relmodel'
 import RelVisualization from './RelVisualization'
+import ProbabilityGraph from './ProbabilityGraph'
+import EntropyGraph from './EntropyGraph'
+import RelationalityGraph from './RelationalityGraph'
 
 class RelCircle extends Component {
 
@@ -79,7 +82,7 @@ class RelCircle extends Component {
   }
 
   render () {
-    const {height, width} = this.props
+    const {height, width, numNodes, showGraphs} = this.props
     const {relModel, bits} = this.state
     return <div style={styles.container}>
       <RelVisualization
@@ -88,7 +91,29 @@ class RelCircle extends Component {
         relModel={relModel}
         bits={bits}
         getPosition={this.getPosition} />
-    </div>
+        {
+          showGraphs &&
+            <ProbabilityGraph
+              width={width}
+              height={numNodes * 55}
+              nodes={relModel.nodes} />
+        }
+        {
+          showGraphs &&
+          <EntropyGraph
+            width={width}
+            height={numNodes * 25}
+            nodes={relModel.nodes} />
+        }
+        {
+          showGraphs &&
+          <RelationalityGraph
+            width={width}
+            height={numNodes * 25}
+            nodes={relModel.nodes}
+            numNodes={numNodes} />
+        }
+      </div>
   }
 }
 
@@ -96,6 +121,9 @@ export default RelCircle;
 
 const styles = {
   container: {
-    padding: 20
+    padding: 20,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   }
 }

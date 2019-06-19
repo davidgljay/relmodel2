@@ -152,6 +152,8 @@ const styles = {
   },
   text: {
     marginTop: 20,
-    marginBottom: 10
+    marginBottom: 10,
+    fontSize: 14,
+    textAlign: 'left'
   }
 }

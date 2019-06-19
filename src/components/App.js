@@ -3,6 +3,7 @@ import RelIntro from './RelIntro'
 import RelDefinition from './RelDefinition'
 import RelTemperature from './RelTemperature'
 import RelColor from './RelColor'
+import LimitsToPrediction from './LimitsToPrediction'
 
 class App extends Component {
 
@@ -79,6 +80,20 @@ class App extends Component {
         </div>
         <h4>We Measure Relationships By Measuring How Order Emerges From Disorder</h4>
         <RelDefinition height={150} width={300} numNodes={20} showProbabilities/>
+        <h4>Are There Limits To What We Predict About Relationships?</h4>
+        <div style={styles.paragraph}>
+          Yes. In order to predict something you need to construct a predictive model
+          of how it works, calibrate your model to match reality, then run the model
+          forward in time to see what will happen.
+        </div>
+        <div style={styles.paragraph}>
+          Let's do that here. We'll create two relational models: one that represents reality,
+          and another that represents our predictive model. We'll assume that we're super smart
+          and that our predictive model perfectly measures reality. We'll also assume that we're
+          very well informed, and that our predictive model matches reality with 99.99% accuracy.
+          What happens?
+        </div>
+        <LimitsToPrediction numNodes={20} height={300} width={300} radius={120}/>
       </div>
     </div>
   }

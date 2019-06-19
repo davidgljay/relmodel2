@@ -13,7 +13,7 @@ const ProbabilityGraph = ({width, height, nodes}) => <svg id="probabilities"
         <rect
           key={`${i}-${j}`}
           style={{fill:`hsl(${color}, 100%, 50%)`}}
-          x={j * width/l}
+          x={j * width/l + 10}
           y={50 * i + 55 - val * 50}
           width={width / (3*l) - 2}
           height={val * 50}

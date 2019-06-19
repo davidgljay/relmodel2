@@ -28,8 +28,7 @@ class RelIntro extends Component {
             onChange={this.handleSlider}
             min={2}
             max={50}
-            step={1}
-          />
+            step={1} />
         </div>
       </div>
 
