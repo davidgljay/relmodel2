@@ -90,7 +90,7 @@ class App extends Component {
           Let's do that here. We'll create two relational models: one that represents reality,
           and another that represents our predictive model. We'll assume that we're super smart
           and that our predictive model perfectly measures reality. We'll also assume that we're
-          very well informed, and that our predictive model matches reality with 99.99% accuracy.
+          very well informed, and that our predictive model matches reality with 99.9% accuracy.
           What happens?
         </div>
         <LimitsToPrediction numNodes={20} height={300} width={300} radius={120}/>

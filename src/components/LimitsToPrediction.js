@@ -5,6 +5,9 @@ import ProbabilityGraph from './ProbabilityGraph'
 import EntropyGraph from './EntropyGraph'
 import RelationalityGraph from './RelationalityGraph'
 import DivergenceVisualization from './DivergenceVisualization'
+import IconButton from '@material-ui/core/IconButton'
+import ReplayIcon from '@material-ui/icons/Replay'
+
 
 class LimitsToPrediction extends Component {
 
@@ -99,7 +102,6 @@ class LimitsToPrediction extends Component {
       const restartTimer = setInterval(() => this.restart(numNodes), restartInterval)
       this.setState({restartTimer})
     }
-    console.log(this.refs);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -127,19 +129,28 @@ class LimitsToPrediction extends Component {
         name1={'Reality'}
         name2={'Model'} />
         <div style={styles.visWrapper}>
+          <div style={styles.vis}>
           <RelVisualization
             width={width}
             height={height}
             relModel={relModel1}
             bits={bits1}
             getPosition={this.getPosition} />
+            Reality
+          </div>
+          <div style={styles.vis}>
           <RelVisualization
             width={width}
             height={height}
             relModel={relModel2}
             bits={bits2}
             getPosition={this.getPosition} />
+            Model
+          </div>
         </div>
+        <IconButton aria-label="Restart" onClick={this.restart}>
+          <ReplayIcon fontSize="medium" />
+        </IconButton>
       </div>
   }
 }
@@ -149,11 +160,19 @@ export default LimitsToPrediction;
 const styles = {
   container: {
     padding: 20,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   },
   visWrapper: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     flexWrap: 'wrap'
+  },
+  vis: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
   }
 }
