@@ -94,7 +94,30 @@ class App extends Component {
           What happens?
         </div>
         <LimitsToPrediction numNodes={20} height={300} width={300} radius={120}/>
+        <div style={styles.paragraph}>
+          The near-perfect predictive model rapidly diverges from reality, settles in a
+          stable and somewhat similar place, then continues to slowly drift. Some version
+          of this behavior happens in all relational systems: tiny deviations between a predictive
+          model and reality compound, causing predictions to become less and less accurate.
+          This effect becomes significantly worse when systems are highly relational
+          and when you try to predict them over long time horizons.
+        </div>
+        <div style={styles.paragraph}>
+          As a rule of thumb: <b>relationality + time = limits to prediction</b>. It doesn't
+          matter how smart your algorithm is or how much data you have about the people
+          or things you're trying to predict, there appear to be fundamental limitations
+          to our ability to predict complex relationships over long time horizons.
+        </div>
+        <div style={styles.paragraph}>
+          Understanding these limits to prediction can be liberating: it can help us
+          avoid spending time and energy trying to predict things about the world
+          that are fundamentally unpredictable and helps us to focus on the things that are.
+          Even though most things about relational systems are impossible to predict, there
+          are a few notable exceptions that can give us insight into the long-term
+          path that relationships will take.
+        </div>
       </div>
+
     </div>
   }
 }
