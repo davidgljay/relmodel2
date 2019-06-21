@@ -80,9 +80,10 @@ class App extends Component {
         </div>
         <h4>We Measure Relationships By Measuring How Order Emerges From Disorder</h4>
         <RelDefinition height={150} width={300} numNodes={20} showProbabilities/>
-        <h4>Are There Limits To What We Predict About Relationships?</h4>
+        <h4>Are Relationships Predictable?</h4>
         <div style={styles.paragraph}>
-          Yes. In order to predict something you need to construct a predictive model
+          There are significant limits to what we can predict about relationships.
+          In order to predict something you need to construct a predictive model
           of how it works, calibrate your model to match reality, then run the model
           forward in time to see what will happen.
         </div>
@@ -103,7 +104,7 @@ class App extends Component {
           and when you try to predict them over long time horizons.
         </div>
         <div style={styles.paragraph}>
-          As a rule of thumb: <b>relationality + time = limits to prediction</b>. It doesn't
+          As a rule of thumb: <b>relationality + time = unpredictability</b>. It doesn't
           matter how smart your algorithm is or how much data you have about the people
           or things you're trying to predict, there appear to be fundamental limitations
           to our ability to predict complex relationships over long time horizons.
@@ -116,8 +117,89 @@ class App extends Component {
           are a few notable exceptions that can give us insight into the long-term
           path that relationships will take.
         </div>
-      </div>
+        <h3>
 
+        {
+          //Text on Relational Optimization
+        }
+        <h3>Is measuring relationships useful, and if so how?</h3>
+        <div style={styles.paragraph}>
+          Not yet. The framework being explored here isn't good for anything other than
+          abstract metaphore, more work is needed to see if it is capable of making
+          verifyable predictions about relational systems to a high degree of accuracy.
+          If it can, then it opens several intriguing possibilities.
+        </div>
+        <div style={styles.paragraph}>
+          Right now we live in a world where it's hard to turn money into relationships.
+          We can turn money into other complicated things like airplanes, power plants, and
+          rock concerts, but it's challenging to financially invest in human connection.
+          It's not that we don't know how: many artists, community organizers, and
+          facilitators excel at creating human connection, but it's often difficult
+          for them to get paid for their skilled labor.
+        </div>
+        <div style={styles.paragraph}>
+          This is because it's hard to invest in things that aren't measurable.
+          If I want to invest a million dollars in relationship building, how do I
+          know who to give it to or what to give it to them for? Relationships have
+          a wide range of benefits that make them worth investing in: they improve health and happiness,
+          they increase resilience and innovation, they prevent violence and improve neighborhoods.
+          But because relationships are intrinsically unpredictable we can't invest in them
+          hoping that a specific good thing will happen. We have to invest knowing that doing so
+          will lead to unpredictably good things happening. Without a specific predictable outcome
+          to measure it is extremely difficult to know if a particular investment in
+          relationship building has been effective, which means that the market for
+          relational labor largely runs on inspiring storytelling and personal trust.
+          This is how the market for medical services worked before the advent of
+          rigorous medical science.
+        </div>
+        <div style={styles.paragraph}>
+          What if that changed? What if it became straightforward to measure when relationships
+          were forming and to invest time and money in the best possible strategies for
+          forming them? Imagine that I could take my million dollars, define a particular
+          kind of relationship I was interested in forming, and automatically divide it up in
+          small chunks to the people most effective at buildling that class of relationship.
+          Imagine that the people building those relationships could take my money and
+          invest in scientifically proven strategies for making relationships happen,
+          all while collecting relational data to improve our scientific understanding
+          of how relationships work.
+        </div>
+        <div style={styles.paragraph}>
+          The result would be a world where well-compensated experts and the systems that they
+          have designed would be available to help anyone create any kind of relationship
+          that they want within the bounds of the law. People looking for intimacy would
+          be able to choose the kind of intimacy that they wanted and participate within
+          systems that produce it as reliably as a well-tended garden produces food. People who
+          wanted to be able to drive collaboration between disciplines or build learning communities for kids or
+          set the conditions for creative work would be able to do so with the degree
+          of certainty that we now have about performing medical procedures or
+          sending people to space.
+        </div>
+        <div style={styles.paragraph}>
+          A methodology for measuring and predicting relationship formation can transform
+          our schools, our workplaces, and our civic institutions in the way that the
+          methodology for turning information into bits has transformed our libraries, our newspapers
+          and our concert halls. Such transformation has deep ethical implications, and would
+          require new frameworks for regulation and governance even as it transforms the
+          ones that we have.
+        </div>
+        <h3>Who are you?</h3>
+        <div style={styles.paragraph}>
+          My name is David Jay, I'm a <a href="https://medium.com/s/story/relationship-machines-675305924d5">community organizer</a>
+          and <a href="https://medium.com/the-establishment/my-path-to-becoming-a-third-parent-41b823809c14">coparent</a>
+          with a background in physics and sociology. I've spent a good chunk of my life
+          building software that builds social movements and exploring what the word "relationship"
+          means through an <a href="https://asexuality.org">asexual</a> lens.
+          Exploring mathematical properties of relationship and their impications is a hobby of mine.
+        </div>
+        <div style={styles.paragraph}>
+          I'm happy to discuss this work, especially with people interested in exploring
+          properties of relationality or doing adjacent work that might inform mine.
+          Critiques that can move my thinking forward are welcome as well!
+        </div>
+        <div style={styles.paragraph}>
+          I am reachable at relationalityxyz at gmail dot com.
+        </div>
+      </div>
     </div>
   }
 }
