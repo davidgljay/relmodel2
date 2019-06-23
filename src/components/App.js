@@ -117,7 +117,6 @@ class App extends Component {
           are a few notable exceptions that can give us insight into the long-term
           path that relationships will take.
         </div>
-        <h3>
 
         {
           //Text on Relational Optimization
@@ -182,9 +181,9 @@ class App extends Component {
           require new frameworks for regulation and governance even as it transforms the
           ones that we have.
         </div>
-        <h3>Who are you?</h3>
+        <h3>Who made this?</h3>
         <div style={styles.paragraph}>
-          My name is David Jay, I'm a <a href="https://medium.com/s/story/relationship-machines-675305924d5">community organizer</a>
+          My name is David Jay, I'm a <a href="https://medium.com/s/story/relationship-machines-675305924d5">community organizer</a> 
           and <a href="https://medium.com/the-establishment/my-path-to-becoming-a-third-parent-41b823809c14">coparent</a>
           with a background in physics and sociology. I've spent a good chunk of my life
           building software that builds social movements and exploring what the word "relationship"
