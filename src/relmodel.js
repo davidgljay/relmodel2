@@ -5,7 +5,7 @@ export default class RelModel {
     this.bits = []
     this.dice = []
     this.diceIndex = 0
-    this.maxEntropy = Math.log1p(1/length) * length ^ 2
+    this.maxEntropy = Math.log1p(1/length) * length ** 2
     this.minEntropy = Math.log1p(1) * length
 
     for (var i = 0; i < length; i++) {
@@ -15,8 +15,9 @@ export default class RelModel {
         targets: Array.from({length}, () => 1/length),
         sum: .1 * length,
         max: .1,
-        entropy: [],
-        entropyDeltas: []
+        entropyLog: [],
+        entropyDeltas: [],
+        entropy: Math.log1p(1/length) * length
       }
     }
 
@@ -31,15 +32,20 @@ export default class RelModel {
       node.targets.forEach(t => sum += t)
       for (var i = 0; i < length; i++) {
         node.targets[i] = node.targets[i]/sum
-        entropy += Math.abs(Math.log1p(node.targets[i]))
         if (node.targets[i] > node.max) {
           node.max = node.targets[i]
         }
       }
-      node.entropy = node.entropy.concat(entropy).reverse().slice(0,200).reverse()
-      node.entropyDeltas = node.entropy.map(
+    }
+
+    this.calculateEntropy = (node) => {
+      node.entropy = node.targets.reduce((entropy, target) => entropy + Math.log1p(target), 0)
+      node.entropyLog = node.entropyLog.length > 200
+        ? node.entropyLog.concat(node.entropy).slice(node.entropyLog.length - 199)
+        : node.entropyLog.concat(node.entropy)
+      node.entropyDeltas = node.entropyLog.map(
         (e, i) => i > 4
-        ? e - node.entropy[i-4]
+        ? e - node.entropyLog[i-4]
         : 0
       ).slice(4, 200)
     }
@@ -48,7 +54,6 @@ export default class RelModel {
       const node = this.nodes[i]
       if (!node) {
         console.error('Node not found');
-        debugger;
       }
 
       const diceRoll = this.diceIndex >= this.dice.length ? Math.random() : this.dice[this.diceIndex]
@@ -85,6 +90,7 @@ export default class RelModel {
           const similarity = (360 - Math.abs(bitColor - nodeColor)) * colorCoefficient
           this.nodes[bit.target].targets[bit.source] += similarity/700 * bitStrength
           this.normalize(this.nodes[bit.target])
+          this.calculateEntropy(this.nodes[bit.target])
 
           const colorDelta = ((Math.abs(bitColor - nodeColor) + 360) % 360)/2
           const colorSign = bitColor > nodeColor ? 1 : -1

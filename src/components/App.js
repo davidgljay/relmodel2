@@ -3,6 +3,7 @@ import RelIntro from './RelIntro'
 import RelDefinition from './RelDefinition'
 import RelTemperature from './RelTemperature'
 import RelColor from './RelColor'
+import RelGame from './RelGame'
 import LimitsToPrediction from './LimitsToPrediction'
 
 class App extends Component {
@@ -80,9 +81,10 @@ class App extends Component {
         </div>
         <h4>We Measure Relationships By Measuring How Order Emerges From Disorder</h4>
         <RelDefinition height={150} width={300} numNodes={20} showProbabilities/>
-        <h4>Are Relationships Predictable?</h4>
+        <h4>Why Are Relationships Hard to Predict?</h4>
         <div style={styles.paragraph}>
-          There are significant limits to what we can predict about relationships.
+          There are significant limits to what we can predict about relationships
+          because of what's popularly known as the butterfly effect.
           In order to predict something you need to construct a predictive model
           of how it works, calibrate your model to match reality, then run the model
           forward in time to see what will happen.
@@ -117,11 +119,25 @@ class App extends Component {
           are a few notable exceptions that can give us insight into the long-term
           path that relationships will take.
         </div>
-
-        {
-          //Text on Relational Optimization
-        }
-        <h3>Is measuring relationships useful, and if so how?</h3>
+        <h3>How Does Measuring Relationships Help Us To Predict Them?</h3>
+        <div style={styles.paragraph}>
+          It turns out that you can predict the relationality of a system even when it's
+          impossible to predict many other things about it. You probably have experience
+          with this. Sometimes you meet someone and have a gut feeling that a conversation
+          with them will be interesting. You don't know what exactly the conversation
+          will look like (not knowing is part of the fun!) but you know that
+          it's more likely to lead to connection than most conversations you have.
+        </div>
+        <div style={styles.paragraph}>
+          This is an example of a <b>relational prediction</b>, a prediction not about
+          what precisely a relationship will look like, but about how likely it is to form.
+          Many of us develop deep intuitions for what conditions are likely to lead
+          to meaningful relationships forming and what conditions aren't. Relationality
+          allows us to use quantitative analysis to make these same kinds of predictions.
+        </div>
+        <h4>See How Conditions Of The System Effect Relationality.</h4>
+        <RelGame height={300} width={300} radius={120} />
+        <h3>Are these measurements and predictions useful, and if so how?</h3>
         <div style={styles.paragraph}>
           Not yet. The framework being explored here isn't good for anything other than
           abstract metaphore, more work is needed to see if it is capable of making
@@ -183,7 +199,7 @@ class App extends Component {
         </div>
         <h3>Who made this?</h3>
         <div style={styles.paragraph}>
-          My name is David Jay, I'm a <a href="https://medium.com/s/story/relationship-machines-675305924d5">community organizer</a> 
+          My name is David Jay, I'm a <a href="https://medium.com/s/story/relationship-machines-675305924d5">community organizer</a>
           and <a href="https://medium.com/the-establishment/my-path-to-becoming-a-third-parent-41b823809c14">coparent</a>
           with a background in physics and sociology. I've spent a good chunk of my life
           building software that builds social movements and exploring what the word "relationship"

@@ -9,7 +9,7 @@ const RelationalityGraph = ({width, height, entropy, nodes, numNodes}) => <svg i
   {
     nodes.map(({color, entropyDeltas}, i) => {
       const entropyDeltaRange = numNodes * Math.log1p(1/numNodes) - Math.log1p(1)
-      return <svg>
+      return <svg key={i}>
           <polyline
           key={`${i}`}
           style={{stroke:`hsl(${color}, 100%, 50%)`, strokeWidth:1, fill:'none'}}
