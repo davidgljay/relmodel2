@@ -17,7 +17,7 @@ class RelDefinition extends Component {
       relIndex: 0,
       stepTimer: null,
       bitTimer: null,
-      restartTimer: null,
+      relTimer: null,
       bits: [],
       entropy: []
     }
@@ -64,12 +64,16 @@ class RelDefinition extends Component {
         const {runStep, runBits} = this
         clearInterval(this.state.stepTimer)
         clearInterval(this.state.bitTimer)
+        clearInterval(this.state.relTimer)
         const stepTimer = setInterval(runStep, 250)
         const bitTimer = setInterval(runBits, 20)
+        const relModel = new RelModel(this.props.numNodes)
+        const relTimer = setInterval(relModel.updateRelationality, 500)
         this.setState({
           relModel: new RelModel(this.props.numNodes),
           stepTimer,
           bitTimer,
+          relModel,
           relIndex: 0,
           bits: []})
     }
@@ -81,10 +85,10 @@ class RelDefinition extends Component {
   }
 
   componentWillUnmount() {
-    const {stepTimer, bitTimer, restartTimer} = this.state
+    const {stepTimer, bitTimer, relTimer} = this.state
     clearInterval(stepTimer)
     clearInterval(bitTimer)
-    clearInterval(restartTimer)
+    clearInterval(relTimer)
   }
 
   render() {
@@ -112,20 +116,28 @@ class RelDefinition extends Component {
             height={110}
             nodes={[relModel.nodes[numNodes/4], relModel.nodes[3 * numNodes/4]]} />
           <div style={styles.text}>
-            A variable called <a href="https://en.wikipedia.org/wiki/Entropy">entropy</a> measures the randomness of these probability distrubutions,
-            by inverting it we get a nice number that goes up as nodes in the system become more stable.
+            A variable called <a href="https://en.wikipedia.org/wiki/Entropy">entropy</a> measures the randomness of these probability distrubutions.
+            It goes up when many states are equally possible, and goes down when a few states are likely.
+            By looking for where it goes down we can track how nodes in the system become form stable relationships.
           </div>
+          <div style={styles.bigNumber}>Entropy: {relModel.entropy.toPrecision(2)}</div>
           <EntropyGraph
             width={width}
-            height={50}
-            nodes={[relModel.nodes[numNodes/4], relModel.nodes[3 * numNodes/4]]} />
+            height={40}
+            relmodel={{
+              ...relModel,
+              nodes: [relModel.nodes[numNodes/4], relModel.nodes[3 * numNodes/4]],
+              entropy: relModel.nodes[numNodes/4].entropy + relModel.nodes[3 * numNodes/4].entropy,
+              maxEntropy: Math.log1p(1/20) * 20 * 2,
+              minEntropy: Math.log1p(1) * 2
+            }} />
           <div style={styles.text}>
             It can also be helpful to examine how quickly a system forms stable relationships.
             This "speed of relationship" is what we will call "relationality."
           </div>
           <RelationalityGraph
             width={width}
-            height={50}
+            height={100}
             nodes={[relModel.nodes[numNodes/4], relModel.nodes[3 * numNodes/4]]}
             numNodes={relModel.nodes.length} />
           <div style={styles.text}>
@@ -155,5 +167,10 @@ const styles = {
     marginBottom: 10,
     fontSize: 14,
     textAlign: 'left'
+  },
+  bigNumber: {
+    margin: 10,
+    fontSize: 16
   }
+
 }

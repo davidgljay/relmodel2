@@ -81,7 +81,7 @@ class App extends Component {
         </div>
         <h4>We Measure Relationships By Measuring How Order Emerges From Disorder</h4>
         <RelDefinition height={150} width={300} numNodes={20} showProbabilities/>
-        <h4>Why Are Relationships Hard to Predict?</h4>
+        <h3>Some Aspects Of Relationships Are Impossible To Predict</h3>
         <div style={styles.paragraph}>
           There are significant limits to what we can predict about relationships
           because of what's popularly known as the butterfly effect.
@@ -96,7 +96,7 @@ class App extends Component {
           very well informed, and that our predictive model matches reality with 99.9% accuracy.
           What happens?
         </div>
-        <LimitsToPrediction numNodes={20} height={300} width={300} radius={120}/>
+          <LimitsToPrediction numNodes={20} height={300} width={300} radius={120}/>
         <div style={styles.paragraph}>
           The near-perfect predictive model rapidly diverges from reality, settles in a
           stable and somewhat similar place, then continues to slowly drift. Some version
@@ -108,8 +108,10 @@ class App extends Component {
         <div style={styles.paragraph}>
           As a rule of thumb: <b>relationality + time = unpredictability</b>. It doesn't
           matter how smart your algorithm is or how much data you have about the people
-          or things you're trying to predict, there appear to be fundamental limitations
-          to our ability to predict complex relationships over long time horizons.
+          involved: you can't predict a good conversation over a long time horizon. You can
+          predict a bad (arelational) conversation over a long time horizon, or the first few
+          moments of a good conversation, but some questions about relational systems simply
+          can't be answered.
         </div>
         <div style={styles.paragraph}>
           Understanding these limits to prediction can be liberating: it can help us

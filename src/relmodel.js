@@ -7,6 +7,8 @@ export default class RelModel {
     this.diceIndex = 0
     this.maxEntropy = Math.log1p(1/length) * length ** 2
     this.minEntropy = Math.log1p(1) * length
+    this.entropy = 0
+    this.relationalityLog = []
 
     for (var i = 0; i < length; i++) {
       this.nodes[i] = {
@@ -36,6 +38,12 @@ export default class RelModel {
           node.max = node.targets[i]
         }
       }
+    }
+
+    this.updateRelationality = () => {
+      this.entropy = this.nodes.reduce((sum, node) => sum + node.entropy, 0)
+      const relationality = this.nodes.reduce((sum, node) => sum + node.entropyDeltas[node.entropyDeltas.length - 1], 0)
+      this.relationalityLog.concat(relationality)
     }
 
     this.calculateEntropy = (node) => {

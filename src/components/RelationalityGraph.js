@@ -14,16 +14,16 @@ const RelationalityGraph = ({width, height, entropy, nodes, numNodes}) => <svg i
           key={`${i}`}
           style={{stroke:`hsl(${color}, 100%, 50%)`, strokeWidth:1, fill:'none'}}
           x={0}
-          y={25 * i}
-          points={entropyDeltas.map((d, j) => `${j * width / 200},${d/entropyDeltaRange* 80 + 10 + i * 25}`).join(' ')}
+          y={25 * i + 20}
+          points={entropyDeltas.map((d, j) => `${j * width / 200},${d/entropyDeltaRange* 70 + 30 + i * 25}`).join(' ')}
           />
           <line
             key={`base${i}`}
             style={{stroke:`lightgrey`, strokeWidth:1, fill:'none'}}
             x1={0}
-            y1={25 * (i + .45)}
+            y1={25 * (i + .45) + 20}
             x2={width - 5}
-            y2={25 * (i + .45)} />
+            y2={25 * (i + .45) + 20} />
         </svg>
 
     })
