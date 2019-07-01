@@ -68,7 +68,7 @@ class RelDefinition extends Component {
         const stepTimer = setInterval(runStep, 250)
         const bitTimer = setInterval(runBits, 20)
         const relModel = new RelModel(this.props.numNodes)
-        const relTimer = setInterval(relModel.updateRelationality, 500)
+        const relTimer = setInterval(relModel.updateRelationality, 400)
         this.setState({
           relModel: new RelModel(this.props.numNodes),
           stepTimer,
@@ -94,6 +94,13 @@ class RelDefinition extends Component {
   render() {
     const {height, width, showProbabilities, numNodes} = this.props
     const {relModel, bits, entropy} = this.state
+    const displayRelModel = {
+      ...relModel,
+      nodes: [relModel.nodes[numNodes/4], relModel.nodes[3 * numNodes/4]],
+      entropy: relModel.nodes[numNodes/4].entropy + relModel.nodes[3 * numNodes/4].entropy,
+      maxEntropy: Math.log1p(1/20) * 20 * 2,
+      minEntropy: Math.log1p(1) * 2
+    }
     return <div style={styles.container}>
       <RelVisualization
         width={width}
@@ -124,22 +131,21 @@ class RelDefinition extends Component {
           <EntropyGraph
             width={width}
             height={40}
-            relmodel={{
-              ...relModel,
-              nodes: [relModel.nodes[numNodes/4], relModel.nodes[3 * numNodes/4]],
-              entropy: relModel.nodes[numNodes/4].entropy + relModel.nodes[3 * numNodes/4].entropy,
-              maxEntropy: Math.log1p(1/20) * 20 * 2,
-              minEntropy: Math.log1p(1) * 2
-            }} />
+            relModel={displayRelModel} />
           <div style={styles.text}>
             It can also be helpful to examine how quickly a system forms stable relationships.
             This "speed of relationship" is what we will call "relationality."
           </div>
+          <div style={styles.bigNumber}>
+            Relationality (Drop in Entropy): {
+              relModel.relationalityLog[relModel.relationalityLog.length - 1] &&
+              (relModel.relationalityLog[relModel.relationalityLog.length - 1] * -200).toPrecision(2)
+            }
+          </div>
           <RelationalityGraph
             width={width}
-            height={100}
-            nodes={[relModel.nodes[numNodes/4], relModel.nodes[3 * numNodes/4]]}
-            numNodes={relModel.nodes.length} />
+            height={50}
+            relModel={displayRelModel} />
           <div style={styles.text}>
             Examining the relationality of a system can give insight into how it
             will behave. Some systems are more relational than others (they have a greater)

@@ -4,19 +4,29 @@ import PropTypes from 'prop-types';
 const avgColor = nodes =>
   nodes.reduce((sum, node) => sum += node.color, 0) / nodes.length
 
-const EntropyGraph = ({width, height, relmodel: {maxEntropy, minEntropy, entropy, nodes}}) => <svg
-  id="entropy"
+const normalize = (e, maxEntropy, minEntropy) => (e - minEntropy)/(maxEntropy - minEntropy)
+
+const EntropyGraph = ({width, height, relModel: {maxEntropy, minEntropy, entropyLog, nodes}}) =>
+<svg id="entropy"
   width={width}
   height={height}
   xmlns="http://www.w3.org/2000/svg"
   xmlnsXlink="http://www.w3.org/1999/xlink">
-  <rect
-    style={{fill:`hsl(${avgColor(nodes)}, 100%, 50%)`}}
-    x={0}
-    y={0}
-    width={(1 - (entropy - minEntropy) / (maxEntropy - minEntropy)) * width }
-    height={20}
-    />
+    <polyline
+      style={{stroke:`hsl(${avgColor(nodes)}, 100%, 50%)`, strokeWidth:1, fill:'none'}}
+      x={0}
+      y={20}
+      points={
+        entropyLog.slice(4).map((e, i) =>
+          `${i * width / 200},${(height - 20) - normalize(e, maxEntropy, minEntropy) * (height - 20)}`
+        ).join(' ')} />
+    <line
+      key={`base`}
+      style={{stroke:`lightgrey`, strokeWidth:1, fill:'none'}}
+      x1={0}
+      y1={20}
+      x2={width - 5}
+      y2={20} />
 </svg>
 
 const {func, shape, object, string, number, arrayOf} = PropTypes;

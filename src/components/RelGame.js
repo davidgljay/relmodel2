@@ -18,6 +18,7 @@ import RelVisualization from './RelVisualization'
 import ProbabilityGraph from './ProbabilityGraph'
 import EntropyGraph from './EntropyGraph'
 import RelationalityGraph from './RelationalityGraph'
+import Slider from '@material-ui/lab/Slider'
 
 class RelGame extends Component {
 
@@ -30,12 +31,13 @@ class RelGame extends Component {
       stepTimer: null,
       bitTimer: null,
       restartTimer: null,
-      scoreTimer: null,
+      relTimer: null,
       bits: [],
       relScoreLog: [0],
       relScore: 0,
       relScoreMax: 0,
       numNodes: 4,
+      colorShiftStrength: 1,
       max: 0
     }
 
@@ -52,6 +54,11 @@ class RelGame extends Component {
       }
     }
 
+    this.handleSlider = (e, v) => {
+      this.setState({colorShiftStrength: v})
+      this.restart()
+    }
+
     this.runStep = () => {
       const {numNodes} = this.state
       const {relModel, relIndex} = this.state
@@ -65,28 +72,16 @@ class RelGame extends Component {
       this.setState({bits: relModel.bits})
     }
 
-    this.getScore = () => {
-      const {relModel, numNodes} = this.state
-      let entropySum = relModel.nodes.reduce((sum, node) => sum + node.entropy, 0)
-      const relScore = relModel.maxEntropy - entropySum
-      this.setState(({relScoreLog}) => ({
-          relScore,
-          relScoreLog: relScoreLog.concat(relScore).reverse().slice(0,5).reverse(),
-          relVelocity: (relScore - relScoreLog[0])/relScoreLog.length
-        })
-      )
-
-    }
-
-    this.restart = (numNodes) => {
+    this.restart = () => {
       const {runStep, runBits, getScore} = this
+      const {numNodes, colorShiftStrength} = this.state
       clearInterval(this.state.stepTimer)
       clearInterval(this.state.bitTimer)
-      clearInterval(this.state.scoreTimer)
+      clearInterval(this.state.relTimer)
       const stepTimer = setInterval(runStep, 40)
       const bitTimer = setInterval(runBits, 20)
-      const scoreTimer = setInterval(getScore, 1000)
-      const relModel = new RelModel(this.state.numNodes)
+      const relModel = new RelModel(numNodes, .5, 1, 1, colorShiftStrength)
+      const relTimer = setInterval(relModel.updateRelationality, 400)
       this.setState({
         relModel,
         stepTimer,
@@ -100,23 +95,17 @@ class RelGame extends Component {
     this.restart(this.state.numNodes)
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.numNodes !== this.state.numNodes) {
-      this.restart(this.state.numNodes)
-    }
-  }
-
   componentWillUnmount() {
-    const {stepTimer, bitTimer, restartTimer, scoreTimer} = this.state
+    const {stepTimer, bitTimer, restartTimer, relTimer} = this.state
     clearInterval(stepTimer)
     clearInterval(bitTimer)
     clearInterval(restartTimer)
-    clearInterval(scoreTimer)
+    clearInterval(relTimer)
   }
 
   render () {
     const {height, width} = this.props
-    const {relModel, bits, numNodes, relScore, relVelocity} = this.state
+    const {relModel, bits, numNodes, relScore, relVelocity, colorShiftStrength} = this.state
     return <div style={styles.container}>
 
       <RelVisualization
@@ -125,9 +114,20 @@ class RelGame extends Component {
         relModel={relModel}
         bits={bits}
         getPosition={this.getPosition} />
-      <div>Entropy Reduction: {isNaN(relScore) ? 0 : Math.round(relScore * 1000)/numNodes} </div>
-      <div>Relationality: {isNaN(relScore) ? 'N/A' : Math.round(relVelocity * 1000)/numNodes}</div>
-
+      <div style={styles.sliderContainer}>
+      <Slider
+        className='slider'
+        value={colorShiftStrength}
+        aria-labelledby="Number of Nodes"
+        onChange={this.handleSlider}
+        min={0}
+        max={1}
+        step={.05} />
+      </div>
+      <EntropyGraph
+        width={width}
+        height={40}
+        relModel={relModel} />
       </div>
   }
 }
@@ -140,5 +140,10 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center'
+  },
+  sliderContainer: {
+    marginTop: 30,
+    marginBottom: 30,
+    width: '100%'
   }
 }

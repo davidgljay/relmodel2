@@ -8,6 +8,7 @@ export default class RelModel {
     this.maxEntropy = Math.log1p(1/length) * length ** 2
     this.minEntropy = Math.log1p(1) * length
     this.entropy = 0
+    this.entropyLog = []
     this.relationalityLog = []
 
     for (var i = 0; i < length; i++) {
@@ -17,8 +18,8 @@ export default class RelModel {
         targets: Array.from({length}, () => 1/length),
         sum: .1 * length,
         max: .1,
-        entropyLog: [],
-        entropyDeltas: [],
+        entropyLog: [0],
+        entropyDeltas: [0],
         entropy: Math.log1p(1/length) * length
       }
     }
@@ -41,21 +42,22 @@ export default class RelModel {
     }
 
     this.updateRelationality = () => {
+      this.lastEntropy = this.entropy.valueOf()
       this.entropy = this.nodes.reduce((sum, node) => sum + node.entropy, 0)
-      const relationality = this.nodes.reduce((sum, node) => sum + node.entropyDeltas[node.entropyDeltas.length - 1], 0)
-      this.relationalityLog.concat(relationality)
+      this.relationalityLog = this.relationalityLog
+        .concat(this.entropy - this.lastEntropy)
+        .slice(this.relationalityLog.length - 399)
+      this.entropyLog = this.entropyLog.concat(this.entropy)
+        .slice(this.entropyLog.length - 399)
     }
 
     this.calculateEntropy = (node) => {
       node.entropy = node.targets.reduce((entropy, target) => entropy + Math.log1p(target), 0)
-      node.entropyLog = node.entropyLog.length > 200
-        ? node.entropyLog.concat(node.entropy).slice(node.entropyLog.length - 199)
-        : node.entropyLog.concat(node.entropy)
-      node.entropyDeltas = node.entropyLog.map(
-        (e, i) => i > 4
-        ? e - node.entropyLog[i-4]
-        : 0
-      ).slice(4, 200)
+      // node.entropyLog = node.entropyLog.concat(node.entropy)
+      //   .slice(node.entropyLog.length - 199)
+      // node.entropyDeltas = node.entropyLog.map(
+      //   (e, i) => e - node.entropyLog[i-4] || 0
+      // ).slice(4, 200)
     }
 
     this.step = (i) => {

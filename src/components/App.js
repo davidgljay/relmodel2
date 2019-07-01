@@ -81,7 +81,7 @@ class App extends Component {
         </div>
         <h4>We Measure Relationships By Measuring How Order Emerges From Disorder</h4>
         <RelDefinition height={150} width={300} numNodes={20} showProbabilities/>
-        <h3>Some Aspects Of Relationships Are Impossible To Predict</h3>
+        <h4>Some Aspects Of Relationships Are Impossible To Predict</h4>
         <div style={styles.paragraph}>
           There are significant limits to what we can predict about relationships
           because of what's popularly known as the butterfly effect.
@@ -121,7 +121,7 @@ class App extends Component {
           are a few notable exceptions that can give us insight into the long-term
           path that relationships will take.
         </div>
-        <h3>How Does Measuring Relationships Help Us To Predict Them?</h3>
+        <h3>You Can Predict Relationality When You Can't Predict Much Else</h3>
         <div style={styles.paragraph}>
           It turns out that you can predict the relationality of a system even when it's
           impossible to predict many other things about it. You probably have experience
@@ -136,6 +136,8 @@ class App extends Component {
           Many of us develop deep intuitions for what conditions are likely to lead
           to meaningful relationships forming and what conditions aren't. Relationality
           allows us to use quantitative analysis to make these same kinds of predictions.
+          By examining the structure of a system we can understand how relationships in it will evolve
+          (and vice versa).
         </div>
         <h4>See How Conditions Of The System Effect Relationality.</h4>
         <RelGame height={300} width={300} radius={120} />
