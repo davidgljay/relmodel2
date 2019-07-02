@@ -141,6 +141,13 @@ class App extends Component {
         </div>
         <h4>See How Conditions Of The System Effect Relationality.</h4>
         <RelGame height={300} width={300} radius={120} />
+        <div style={styles.paragraph}>
+        What do you observe? Note that systems which maintain separate colors tend to be more relational
+        than systems which don't: entropy drops faster and stable flows of information occur
+        more quickly, even if we can't predict exactly how. This is one small example of how
+        the conditions in a relational system can predict how quickly relationships will form,
+        even if it is impossible to predict exactly what thos relationships will look like.
+        </div>
         <h3>Are these measurements and predictions useful, and if so how?</h3>
         <div style={styles.paragraph}>
           Not yet. The framework being explored here isn't good for anything other than

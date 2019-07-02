@@ -1,17 +1,3 @@
-// RelVisualization
-
-// Relationality Readout
-// How to do this? It should be a score.
-// Entropy Reduction/Min, take from the past 5 seconds * 12. Update once/second.
-// High Score
-
-// Number of Circles
-
-// External temperature
-
-// Color similarity (ramp up color strength), creates loose clustering
-// Ramp up color strength for this model
-
 import React, {Component} from 'react'
 import RelModel from '../relmodel'
 import RelVisualization from './RelVisualization'
@@ -36,7 +22,7 @@ class RelGame extends Component {
       relScoreLog: [0],
       relScore: 0,
       relScoreMax: 0,
-      numNodes: 4,
+      numNodes: 6,
       colorShiftStrength: 1,
       max: 0
     }
@@ -115,6 +101,7 @@ class RelGame extends Component {
         bits={bits}
         getPosition={this.getPosition} />
       <div style={styles.sliderContainer}>
+      How quickly do colors shift?
       <Slider
         className='slider'
         value={colorShiftStrength}
@@ -124,6 +111,7 @@ class RelGame extends Component {
         max={1}
         step={.05} />
       </div>
+      <h4>Entropy Curve</h4>
       <EntropyGraph
         width={width}
         height={40}

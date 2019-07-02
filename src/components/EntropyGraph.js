@@ -12,14 +12,14 @@ const EntropyGraph = ({width, height, relModel: {maxEntropy, minEntropy, entropy
   height={height}
   xmlns="http://www.w3.org/2000/svg"
   xmlnsXlink="http://www.w3.org/1999/xlink">
-    <polyline
-      style={{stroke:`hsl(${avgColor(nodes)}, 100%, 50%)`, strokeWidth:1, fill:'none'}}
+    <polygon
+      style={{fill:`hsl(${avgColor(nodes)}, 100%, 50%)`, strokeWidth:1}}
       x={0}
       y={20}
-      points={
+      points={'0,20 ' +
         entropyLog.slice(4).map((e, i) =>
           `${i * width / 200},${(height - 20) - normalize(e, maxEntropy, minEntropy) * (height - 20)}`
-        ).join(' ')} />
+        ).join(' ') + ` ${(entropyLog.length - 5) * width / 200},20`} />
     <line
       key={`base`}
       style={{stroke:`lightgrey`, strokeWidth:1, fill:'none'}}
