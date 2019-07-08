@@ -1,6 +1,6 @@
 export default class RelModel {
 
-  constructor (length, colorCoefficient = .1, numDice = 1, bitStrength = 2, colorShiftStrength = 1) {
+  constructor (length, colorCoefficient = .5, numDice = 1, bitStrength = .5, colorShiftStrength = 2) {
     this.nodes = []
     this.bits = []
     this.dice = []
@@ -93,7 +93,7 @@ export default class RelModel {
       this.bits = this.bits.filter(bit => bit.complete < 100)
       for (var i = 0; i < this.bits.length; i++) {
         const bit = this.bits[i]
-        bit.complete += 1
+        bit.complete += 2
         if (bit.complete === 100) {
           const bitColor = bit.color
           const nodeColor = this.nodes[bit.target].color

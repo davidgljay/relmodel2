@@ -66,7 +66,7 @@ class RelGame extends Component {
       clearInterval(this.state.relTimer)
       const stepTimer = setInterval(runStep, 40)
       const bitTimer = setInterval(runBits, 20)
-      const relModel = new RelModel(numNodes, .5, 1, 1, colorShiftStrength)
+      const relModel = new RelModel(numNodes, 1, 1, 1, colorShiftStrength)
       const relTimer = setInterval(relModel.updateRelationality, 400)
       this.setState({
         relModel,
@@ -108,7 +108,7 @@ class RelGame extends Component {
         aria-labelledby="Number of Nodes"
         onChange={this.handleSlider}
         min={0}
-        max={1}
+        max={3}
         step={.05} />
       </div>
       <h4>Entropy Curve</h4>

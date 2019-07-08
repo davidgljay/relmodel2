@@ -10,7 +10,7 @@
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
   },
-  "homepage": "https://davidgljay.github.io/relmodel2/",
+  "homepage": "https://relationality.xyz/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
