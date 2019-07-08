@@ -60,17 +60,28 @@ class RelDefinition extends Component {
       this.setState({bits: relModel.bits})
     }
 
+    this.updateRelationality = () => {
+      const {relModel} = this.state
+        const numNodes = relModel.nodes.length
+        relModel.entropy = relModel.nodes[numNodes/4].entropy + relModel.nodes[3 * numNodes/4].entropy
+        relModel.entropyLog = relModel.entropyLog.concat(relModel.entropy)
+          .slice(relModel.entropyLog.length - 399)
+    }
+
     this.restart = () => {
         const {runStep, runBits} = this
+        const {numNodes} = this.props
         clearInterval(this.state.stepTimer)
         clearInterval(this.state.bitTimer)
         clearInterval(this.state.relTimer)
         const stepTimer = setInterval(runStep, 250)
         const bitTimer = setInterval(runBits, 20)
-        const relModel = new RelModel(this.props.numNodes)
-        const relTimer = setInterval(relModel.updateRelationality, 400)
+        const relModel = new RelModel(numNodes)
+        relModel.maxEntropy = Math.log1p(1/numNodes) * numNodes * 2
+        relModel.minEntropy = Math.log1p(1) * 2
+        const relTimer = setInterval(this.updateRelationality, 400)
         this.setState({
-          relModel: new RelModel(this.props.numNodes),
+          relModel,
           stepTimer,
           bitTimer,
           relModel,
@@ -96,10 +107,7 @@ class RelDefinition extends Component {
     const {relModel, bits, entropy} = this.state
     const displayRelModel = {
       ...relModel,
-      nodes: [relModel.nodes[numNodes/4], relModel.nodes[3 * numNodes/4]],
-      entropy: relModel.nodes[numNodes/4].entropy + relModel.nodes[3 * numNodes/4].entropy,
-      maxEntropy: Math.log1p(1/20) * 20 * 2,
-      minEntropy: Math.log1p(1) * 2
+      nodes: [relModel.nodes[numNodes/4], relModel.nodes[3 * numNodes/4]]
     }
     return <div style={styles.container}>
       <RelVisualization
@@ -125,26 +133,12 @@ class RelDefinition extends Component {
           <div style={styles.text}>
             A variable called <a href="https://en.wikipedia.org/wiki/Entropy">entropy</a> measures the randomness of these probability distrubutions.
             It goes up when many states are equally possible, and goes down when a few states are likely.
-            By looking for where it goes down we can track how nodes in the system become form stable relationships.
+            By observing patterns in how it goes down we can track how nodes in the system become form stable relationships.
           </div>
           <div style={styles.bigNumber}>Entropy: {relModel.entropy.toPrecision(2)}</div>
           <EntropyGraph
             width={width}
             height={40}
-            relModel={displayRelModel} />
-          <div style={styles.text}>
-            It can also be helpful to examine how quickly a system forms stable relationships.
-            This "speed of relationship" is what we will call "relationality."
-          </div>
-          <div style={styles.bigNumber}>
-            Relationality (Drop in Entropy): {
-              relModel.relationalityLog[relModel.relationalityLog.length - 1] &&
-              (relModel.relationalityLog[relModel.relationalityLog.length - 1] * -200).toPrecision(2)
-            }
-          </div>
-          <RelationalityGraph
-            width={width}
-            height={50}
             relModel={displayRelModel} />
           <div style={styles.text}>
             Examining the relationality of a system can give insight into how it

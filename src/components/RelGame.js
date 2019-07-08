@@ -101,7 +101,7 @@ class RelGame extends Component {
         bits={bits}
         getPosition={this.getPosition} />
       <div style={styles.sliderContainer}>
-      How quickly do colors shift?
+      <h4>How quickly do colors shift?</h4>
       <Slider
         className='slider'
         value={colorShiftStrength}
