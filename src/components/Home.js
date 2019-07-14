@@ -81,14 +81,14 @@ class Home extends Component {
         </div>
         <h4>We Measure Relationships By Measuring How Order Emerges From Disorder</h4>
         <RelDefinition height={150} width={300} numNodes={20} showProbabilities/>
-        <div style={styles.text}>
+        <div style={styles.paragraph}>
           This entropy curve provides a snapshot of how relationships are forming over time.
           If relationships form quickly, if a system is highly relational, then entropy will go down quickly.
           If relationships are unstable it will oscillate up and down. By examining the entropy curve
           for a system overall or for individual nodes in that system
           we get a useful quantitative measure of relationship formation.
         </div>
-        <div style={styles.text}>
+        <div style={styles.paragraph}>
           This quantified measure lets us ask a number of new and interesting questions about
           how relationships form. For example, we can compare entropy curves from two
           different systems and see how they compare. We can look at the entropy curve of a system,
@@ -97,7 +97,7 @@ class Home extends Component {
           (say, the inside of a cell and the data in a social network) and see what they have
           in common.
         </div>
-        <div style={styles.text}>
+        <div style={styles.paragraph}>
           But there are also limits. It is extremely difficult to measure the
           entropy curve of something as complex as a human relationship (though there are
           ways to use proxy measurements.) There are also hard limits to how accurately
@@ -172,13 +172,18 @@ class Home extends Component {
          What do you observe? Note that systems which maintain separate colors tend to be more relational
          than systems which don't: entropy drops faster and stable flows of information occur
          more quickly, even if we can't predict exactly how. See if you can notice other factors at play.
-         Can you predict whether a particular configuration will form stable relationships quickly or slowly? What
-         lets you make that prediction?
+         Can you predict whether a particular configuration will form stable relationships quickly or slowly?
+         Note that you can make this prediction, a prediction about relationality, even
+         when it's impossible to know what the end state of the system will be.
         </div>
         <div style={styles.paragraph}>
-         This is one small example of how
-         the conditions in a relational system can predict how quickly relationships will form,
-         even if it is impossible to predict exactly what thos relationships will look like.
+         This is one small example of how the conditions in a relational system
+         let us predict how quickly relationships will form. It's possible to measure a system
+         and scientifically predict how good it will be at forming relationships, even if
+         we can't predict what those relationships will look like. It's also possible
+         to measure a system and then predict what changes might make it more relational.
+         Making these predictions can let us recognize, build and protect highly relational environments
+         in the world around us. 
         </div>
         <h3>Are these measurements and predictions useful, and if so how?</h3>
         <div style={styles.paragraph}>
@@ -202,7 +207,7 @@ class Home extends Component {
           a wide range of benefits that make them worth investing in: they improve health and happiness,
           they increase resilience and innovation, they prevent violence and improve neighborhoods.
           But because relationships are intrinsically unpredictable they're often a bad way to make
-          specific, measurable good things will happen. We have to invest knowing that doing so
+          specific, measurably good things will happen. We have to invest knowing that doing so
           will lead to unpredictably good things happening. Without a specific predictable outcome
           to measure it is extremely difficult to know if a particular investment in
           relationship building has been effective, which means that the market for
