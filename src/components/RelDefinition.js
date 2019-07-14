@@ -135,17 +135,10 @@ class RelDefinition extends Component {
             It goes up when many states are equally possible, and goes down when a few states are likely.
             By observing patterns in how it goes down we can track how nodes in the system become form stable relationships.
           </div>
-          <div style={styles.bigNumber}>Entropy: {relModel.entropy.toPrecision(2)}</div>
           <EntropyGraph
             width={width}
             height={40}
             relModel={displayRelModel} />
-          <div style={styles.text}>
-            Examining the relationality of a system can give insight into how it
-            will behave. Some systems are more relational than others (they have a greater)
-            "speed of relationship". With enough knowledge, one can intervene
-            in systems to make them more or less relational. But there are limits.
-          </div>
         </div>
       }
     </div>

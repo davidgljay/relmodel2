@@ -40,8 +40,13 @@ class RelGame extends Component {
       }
     }
 
-    this.handleSlider = (e, v) => {
+    this.handleColorSlider = (e, v) => {
       this.setState({colorShiftStrength: v})
+      this.restart()
+    }
+
+    this.handleNumSlider = (e, v) => {
+      this.setState({numNodes: v})
       this.restart()
     }
 
@@ -101,15 +106,26 @@ class RelGame extends Component {
         bits={bits}
         getPosition={this.getPosition} />
       <div style={styles.sliderContainer}>
-      <h4>How quickly do colors shift?</h4>
-      <Slider
-        className='slider'
-        value={colorShiftStrength}
-        aria-labelledby="Number of Nodes"
-        onChange={this.handleSlider}
-        min={0}
-        max={3}
-        step={.05} />
+        <h4>How many nodes?</h4>
+        <Slider
+          className='slider'
+          value={numNodes}
+          aria-labelledby="Number of Nodes"
+          onChange={this.handleNumSlider}
+          min={2}
+          max={30}
+          step={1} />
+      </div>
+      <div style={styles.sliderContainer}>
+        <h4>How quickly do colors shift?</h4>
+        <Slider
+          className='slider'
+          value={colorShiftStrength}
+          aria-labelledby="How quickly do colors shift?"
+          onChange={this.handleColorSlider}
+          min={0}
+          max={3}
+          step={.05} />
       </div>
       <h4>Entropy Curve</h4>
       <EntropyGraph
