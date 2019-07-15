@@ -28,7 +28,7 @@ class Home extends Component {
           for measuring information in bits.
           This framework allowed scientists and engineers to precisely understand
           how information would behave regardless of what kind of information it was.
-          By figuring out how to send, store and processing bits, scientists could
+          By figuring out how to send, store and process bits, scientists could suddenly
           send, store and process any kind of information.
         </div>
         <div style={styles.paragraph}>
@@ -85,17 +85,16 @@ class Home extends Component {
           This entropy curve provides a snapshot of how relationships are forming over time.
           If relationships form quickly, if a system is highly relational, then entropy will go down quickly.
           If relationships are unstable it will oscillate up and down. By examining the entropy curve
-          for a system overall or for individual nodes in that system
-          we get a useful quantitative measure of relationship formation.
+          for a system overall or for individual nodes in that system we get a useful quantitative measure of relationship formation.
         </div>
         <div style={styles.paragraph}>
           This quantified measure lets us ask a number of new and interesting questions about
-          how relationships form. For example, we can compare entropy curves from two
-          different systems and see how they compare. We can look at the entropy curve of a system,
+          how relationships form. For example, we can measure the similarity between entropy curves from two
+          different systems to see if they have similar properties. We can look at the entropy curve of a system,
           compare it to other systems we've seen, and predict how good it will be at
           forming relationships in the future. We can compare entropy curves from two different kinds of systems
           (say, the inside of a cell and the data in a social network) and see what they have
-          in common.
+          in common. If we observe that two systems have similar entropy curves we can infer other things about their structure.
         </div>
         <div style={styles.paragraph}>
           But there are also limits. It is extremely difficult to measure the
@@ -114,8 +113,8 @@ class Home extends Component {
         <div style={styles.paragraph}>
           Let's do that here. We'll create two relational models: one that represents reality,
           and another that represents our predictive model. We'll assume that we're super smart
-          and that our predictive model perfectly measures reality. We'll also assume that we're
-          very well informed, and that our predictive model matches reality with 99.9% accuracy.
+          and that our predictive model perfectly represents reality (good luck with this in the real world).
+          We'll also assume that we're very well informed, and that our predictive model is calibrated to match reality with 99.9% accuracy.
           What happens?
         </div>
           <LimitsToPrediction numNodes={20} height={300} width={300} radius={120}/>
@@ -183,7 +182,8 @@ class Home extends Component {
          we can't predict what those relationships will look like. It's also possible
          to measure a system and then predict what changes might make it more relational.
          Making these predictions can let us recognize, build and protect highly relational environments
-         in the world around us. 
+         in the world around us; to create schools, gatherings, community centers and workplaces that are
+         optimized for relationality.
         </div>
         <h3>Are these measurements and predictions useful, and if so how?</h3>
         <div style={styles.paragraph}>
@@ -241,8 +241,11 @@ class Home extends Component {
           A methodology for measuring and predicting relationship formation could transform
           our schools, our workplaces, and our civic institutions in the way that the
           methodology for turning information into bits has transformed our libraries, our newspapers
-          and our concert halls. Relational analysis could also be a helpful tool in
-          understanding a wide range of complex systems.
+          and our concert halls. But first we need to do the underlying exploratory work to understand if such
+          measurement is possible. If you're someone with the skills and interest to help with that work I'd love your help.
+        </div>
+        <div style={styles.paragraph}>
+          I am reachable at relationalityxyz at gmail dot com.
         </div>
         <h3>Who made this?</h3>
         <div style={styles.paragraph}>
@@ -258,9 +261,6 @@ class Home extends Component {
           properties of relationality, doing adjacent work that might inform mine, or
           turning me on to existing research that could inform my work.
           Critiques that can move my thinking forward are welcome as well!
-        </div>
-        <div style={styles.paragraph}>
-          I am reachable at relationalityxyz at gmail dot com.
         </div>
       </div>
     </div>
