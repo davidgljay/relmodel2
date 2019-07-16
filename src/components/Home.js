@@ -63,7 +63,7 @@ class Home extends Component {
           its own information out to the world) is more likely to result in a relationship
           than information which doesn't.
         </div>
-        <h4>Relationship Often Form In A Noisy Environment</h4>
+        <h4>Relationships Often Form In A Noisy Environment</h4>
         <RelTemperature height={150} width={300} numNodes={20}/>
         <div style={styles.paragraph}>
           Most relationships do not happen in a vacuum. New information from
