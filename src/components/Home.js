@@ -193,56 +193,19 @@ class Home extends Component {
           If it can, then it opens several intriguing possibilities.
         </div>
         <div style={styles.paragraph}>
-          Right now we live in a world where it's hard to turn money into relationships.
-          We can turn money into other complicated things like airplanes, power plants, and
-          rock concerts, but it's challenging to financially invest in human connection.
-          It's not that we don't know how: many artists, community organizers, and
-          facilitators excel at creating human connection, but it's often difficult
-          for them to get paid for their skilled labor.
+          Many systems in the natural world can be modeled as networks of relationships.
+          This work may produce extremely versatile analytical tools which could be used to
+          measure and predict these networks, identifying underlying and universal properties of
+          relationship which could be used to measure everything from bacterial ecosystems to
+          economic growth. These tools could be used to directly translate learnings from
+          one relational domain to another. For example, principles in ecology could be converted to
+          relational notation and applied with precision to the study of dynamics in human social systems,
+          and vice versa.
         </div>
         <div style={styles.paragraph}>
-          This is because it's hard to invest in things that aren't measurable.
-          If I want to invest a million dollars in relationship building, how do I
-          know who to give it to or whether they've used it well? Relationships have
-          a wide range of benefits that make them worth investing in: they improve health and happiness,
-          they increase resilience and innovation, they prevent violence and improve neighborhoods.
-          But because relationships are intrinsically unpredictable they're often a bad way to make
-          specific, measurably good things will happen. We have to invest knowing that doing so
-          will lead to unpredictably good things happening. Without a specific predictable outcome
-          to measure it is extremely difficult to know if a particular investment in
-          relationship building has been effective, which means that the market for
-          relational labor largely runs on inspiring storytelling and personal trust.
-          It is similar to how the market for medical services worked before the advent of
-          rigorous medical science.
-        </div>
-        <div style={styles.paragraph}>
-          What if that changed? What if it became straightforward to measure when relationships
-          were forming and to invest time and money in the best possible strategies for
-          forming them? Imagine that I could take a million dollars, define a particular
-          kind of relationship I was interested in forming, and automatically divide it up in
-          small chunks to the people most effective at building that class of relationship.
-          Imagine that the people building those relationships could take my money and
-          invest in scientifically proven strategies for making relationships happen,
-          all while collecting relational data to improve our scientific understanding
-          of how relationships work.
-        </div>
-        <div style={styles.paragraph}>
-          The result would be a world where well-compensated experts and the systems that they
-          have designed would be available to help anyone create any kind of relationship
-          that they want within the bounds of the law. People looking for intimacy would
-          be able to choose the kind of intimacy that they wanted and participate in
-          systems that produce it as reliably as a well-tended garden produces food. People who
-          wanted to be able to drive collaboration between disciplines or build learning communities for kids or
-          set the conditions for creative work would be able to do so with the degree
-          of certainty that we now have about performing medical procedures or
-          sending people to space.
-        </div>
-        <div style={styles.paragraph}>
-          A methodology for measuring and predicting relationship formation could transform
-          our schools, our workplaces, and our civic institutions in the way that the
-          methodology for turning information into bits has transformed our libraries, our newspapers
-          and our concert halls. But first we need to do the underlying exploratory work to understand if such
-          measurement is possible. If you're someone with the skills and interest to help with that work I'd love your help.
+          Significant additional work must be performed to understand if such ambitious goals
+          are achievable. If you are interested in helping and have sufficient expertise to do so,
+          please reach out to me.
         </div>
         <div style={styles.paragraph}>
           I am reachable at relationalityxyz at gmail dot com.
