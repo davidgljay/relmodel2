@@ -206,7 +206,7 @@ class Home extends Component {
           The current work is far from this vision, but it's fun to play around with. You can do so
           <a href="https://colab.research.google.com/drive/1PGWlVx6wgnwHGLCnDYjHoN-BfaPtpDHF#scrollTo=o9ESMLo7vinZ" target="_blank">in python</a>
           to explore the dynamics of relational systems or
-          <a href="https://jsfiddle.net/davidgljay/vdx5uety/46/" target="_blank">in javascript</a>
+          <a href="https://jsfiddle.net/davidgljay/vdx5uety/46/" target="_blank">in javascript</a> 
           to play around with the visualizations used here.
         </div>
         <div style={styles.paragraph}>
