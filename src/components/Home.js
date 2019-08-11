@@ -206,7 +206,7 @@ class Home extends Component {
           The current work is far from this vision, but it's fun to play around with. You can do so
           <a href="https://colab.research.google.com/drive/1PGWlVx6wgnwHGLCnDYjHoN-BfaPtpDHF#scrollTo=o9ESMLo7vinZ" target="_blank">in python</a>
           to explore the dynamics of relational systems or
-          <a href="https://jsfiddle.net/davidgljay/vdx5uety/46/" target="_blank">in javascript</a> 
+          <a href="https://jsfiddle.net/davidgljay/vdx5uety/46/" target="_blank">in javascript</a>
           to play around with the visualizations used here.
         </div>
         <div style={styles.paragraph}>
@@ -215,7 +215,7 @@ class Home extends Component {
         <h3>Who made this?</h3>
         <div style={styles.paragraph}>
           My name is David Jay, I'm a <a href="https://medium.com/s/story/relationship-machines-675305924d5">community organizer</a>
-          and <a href="https://medium.com/the-establishment/my-path-to-becoming-a-third-parent-41b823809c14">coparent</a>
+          and <a href="https://medium.com/the-establishment/my-path-to-becoming-a-third-parent-41b823809c14">coparent</a> 
           with a background in physics and sociology. I've spent a good chunk of my life
           building software that builds social movements and exploring what the word "relationship"
           means through an <a href="https://asexuality.org">asexual</a> lens.
